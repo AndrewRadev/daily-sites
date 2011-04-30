@@ -15,5 +15,13 @@ module DailySites
     config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
     config.encoding = "utf-8"
     config.filter_parameters += [:password]
+
+    # Fix spork model reloading problem
+    if Rails.env.test?
+      initializer :after => :initialize_dependency_mechanism do
+        # Work around initializer in railties/lib/rails/application/bootstrap.rb
+        ActiveSupport::Dependencies.mechanism = :load
+      end
+    end
   end
 end
