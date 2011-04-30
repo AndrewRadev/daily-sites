@@ -6,3 +6,4 @@ config/database.yml
 
 _project.vim
 tags
+gems.tags
