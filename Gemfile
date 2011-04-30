@@ -15,3 +15,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'libnotify'
 end
+
+group :test do
+  gem 'sample_models'
+end
