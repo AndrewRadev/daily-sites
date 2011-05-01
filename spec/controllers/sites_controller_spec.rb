@@ -6,10 +6,14 @@ describe SitesController do
   end
 
   describe "index" do
-    it "assigns all sites as @sites" do
-      Site.stub(:all) { [mock_site] }
+    it "assigns to @sites" do
       get :index
-      assigns(:sites).should eq([mock_site])
+      assigns(:sites).should be_present
+    end
+
+    it "retrieves sites only for the current day" do
+      Site.should_receive(:for_today).once
+      get :index
     end
   end
 

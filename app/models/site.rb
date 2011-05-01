@@ -17,7 +17,20 @@ class Site < ActiveRecord::Base
     super or Set.new
   end
 
+  def days=(v)
+    super(v.to_set)
+  end
+
   def day_names
     days.to_a.sort.map { |d| DayNames[d] }.to_sentence
+  end
+
+  class << self
+    def for_today
+      week_day = Date.today.cwday
+      Site.all.select do |s|
+        s.days.include? week_day
+      end
+    end
   end
 end

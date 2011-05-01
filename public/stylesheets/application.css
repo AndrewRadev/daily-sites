@@ -73,3 +73,12 @@ a {
 .error_messages ul {
   margin: 0;
 }
+
+table {
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #aaa;
+  padding: 3px;
+}

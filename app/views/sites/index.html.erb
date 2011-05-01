@@ -2,22 +2,25 @@
 
 <table>
   <tr>
-    <th>Url</th>
-    <th>Days</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <td>Site</td>
+    <td>Days</td>
+
+    <td></td>
+    <td></td>
+    <td></td>
   </tr>
 
-<% @sites.each do |site| %>
-  <tr>
-    <td><%= site.url %></td>
-    <td><%= site.day_names %></td>
-    <td><%= link_to 'Show', site %></td>
-    <td><%= link_to 'Edit', edit_site_path(site) %></td>
-    <td><%= link_to 'Destroy', site, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+  <% @sites.each do |site| %>
+    <tr>
+      <td class="site">
+        <%= link_to site.title, site.url, :target => '_newtab' %>
+      </td>
+      <td><%= site.day_names %></td>
+      <td><%= link_to 'Show', site %></td>
+      <td><%= link_to 'Edit', edit_site_path(site) %></td>
+      <td><%= link_to 'Destroy', site, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
 </table>
 
 <br />

@@ -11,6 +11,8 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'spork'
+  gem 'factory_girl'
+  gem 'timecop'
 
   gem 'guard-rspec'
   gem 'libnotify'

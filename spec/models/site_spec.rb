@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Site do
-  let(:site) { Site.sample }
+  let(:site) { Site.make }
 
   it "keeps the days it's active in a set" do
     site.days = Set.new
@@ -25,5 +25,20 @@ describe Site do
     site.reload
 
     site.day_names.should eq 'tuesday, friday, and saturday'
+  end
+
+  it "retrieves sites, scheduled for the current day" do
+    weekdays = Site.make :days => (Site::Monday .. Site::Friday)
+    weekends = Site.make :days => [Site::Saturday, Site::Sunday]
+
+    Timecop.freeze Date.parse('2011-05-01') do # Sunday
+      Site.for_today.should include weekends
+      Site.for_today.should_not include weekdays
+    end
+
+    Timecop.freeze Date.parse('2011-05-04') do # Wednesday
+      Site.for_today.should_not include weekends
+      Site.for_today.should include weekdays
+    end
   end
 end
