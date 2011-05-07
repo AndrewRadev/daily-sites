@@ -15,10 +15,7 @@ describe Site do
   end
 
   it "keeps the days it's active in a set" do
-    site.days = Set.new
-    site.days << Site::Wednesday
-    site.days << Site::Monday
-    site.days << Site::Friday
+    site = Site.create_sample :days => [Site::Wednesday, Site::Monday, Site::Friday]
 
     site.save!
     site.reload
@@ -27,10 +24,7 @@ describe Site do
   end
 
   it "displays the days it's active as a sentence" do
-    site.days = Set.new
-    site.days << Site::Friday
-    site.days << Site::Tuesday
-    site.days << Site::Saturday
+    site = Site.create_sample :days => [Site::Friday, Site::Tuesday, Site::Saturday]
 
     site.save!
     site.reload
@@ -39,8 +33,8 @@ describe Site do
   end
 
   it "retrieves sites, scheduled for the current day" do
-    weekdays = Site.make :days => (Site::Monday .. Site::Friday)
-    weekends = Site.make :days => [Site::Saturday, Site::Sunday]
+    weekdays = Site.create_sample :days => (Site::Monday .. Site::Friday)
+    weekends = Site.create_sample :days => [Site::Saturday, Site::Sunday]
 
     Timecop.freeze Date.parse('2011-05-01') do # Sunday
       Site.for_today.should include weekends
