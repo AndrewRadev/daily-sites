@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Title:</b>
+  <%= @site.title %>
+</p>
+
+<p>
   <b>Url:</b>
-  <%= @site.url %>
+  <%= link_to @site.url, @site.url %>
 </p>
 
 <p>
   <b>Days:</b>
-  <%= @site.days %>
+  <%= @site.day_names %>
 </p>
 
 

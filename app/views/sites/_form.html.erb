@@ -12,13 +12,25 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
     <%= f.label :url %><br />
     <%= f.text_field :url %>
   </div>
 
   <div class="field">
     <%= f.label :days %><br />
-    <%= f.text_area :days %>
+
+    <%= f.check_box :monday    %> Monday    <br />
+    <%= f.check_box :tuesday   %> Tuesday   <br />
+    <%= f.check_box :wednesday %> Wednesday <br />
+    <%= f.check_box :thursday  %> Thursday  <br />
+    <%= f.check_box :friday    %> Friday    <br />
+    <%= f.check_box :saturday  %> Saturday  <br />
+    <%= f.check_box :sunday    %> Sunday    <br />
   </div>
 
   <div class="actions">

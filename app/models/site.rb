@@ -14,14 +14,29 @@ class Site < ActiveRecord::Base
     Sunday    => 'sunday',
   }
 
+  # TODO work around the "0" and "1" that come from the checkbox
+  DayNames.each do |day, day_name|
+    define_method "#{day_name}=" do |yes|
+      if yes.to_i > 0
+        self.days << day
+      else
+        self.days.delete(day)
+      end
+    end
+
+    define_method day_name do
+      self.days.include? day
+    end
+  end
+
   serialize :days
 
   def days
-    super or Set.new
+    super or (self.days = Set.new)
   end
 
   def days=(v)
-    super(v.to_set)
+    super(v.try(:to_set))
   end
 
   def day_names

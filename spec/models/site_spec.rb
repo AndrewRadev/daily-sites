@@ -46,4 +46,35 @@ describe Site do
       Site.for_today.should include weekdays
     end
   end
+
+  it "allows adding days one by one by appending to #days" do
+    site = Site.sample :days => nil
+
+    site.days.should be_empty
+    site.days << Site::Monday
+    site.should have(1).days
+  end
+
+  it "allows adding days one by one with a boolean flag" do
+    site = Site.sample :days => []
+    site.days.should be_empty
+
+    site.monday = 1
+    site.days.should include Site::Monday
+
+    site.tuesday = 1
+    site.days.should include Site::Tuesday
+
+    site.monday = 0
+    site.days.should_not include Site::Monday
+  end
+
+  it "allows checking whether it's active for today" do
+    site = Site.create_sample :days => [Site::Monday, Site::Thursday]
+
+    site.monday.should be_true
+    site.tuesday.should be_false
+    site.wednesday.should be_false
+    site.thursday.should be_true
+  end
 end
