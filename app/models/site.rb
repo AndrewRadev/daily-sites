@@ -1,4 +1,7 @@
 class Site < ActiveRecord::Base
+  validates :title, :url, :presence => true
+  validates :url, :format => URI.regexp(['http', 'https'])
+
   Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday = (1 .. 7).to_a
 
   DayNames = {

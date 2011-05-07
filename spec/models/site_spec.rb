@@ -1,7 +1,18 @@
 require 'spec_helper'
 
 describe Site do
-  let(:site) { Site.make }
+  let(:site) { Site.sample }
+
+  it { should validate_presence_of(:title) }
+  it { should validate_presence_of(:url) }
+
+  it "should validate the correctness of the url" do
+    site.url = 'invalid'
+    site.should be_invalid
+
+    site.url = 'http://example.com'
+    site.should be_valid
+  end
 
   it "keeps the days it's active in a set" do
     site.days = Set.new

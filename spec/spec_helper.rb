@@ -19,4 +19,8 @@ Spork.each_run do
   RSpec.configure do |config|
     config.mock_with :rspec
   end
+
+  SampleModels.configure(Site) do |site|
+    site.url.default 'http://example.com'
+  end
 end

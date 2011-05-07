@@ -20,4 +20,5 @@ end
 
 group :test do
   gem 'sample_models'
+  gem 'shoulda'
 end
