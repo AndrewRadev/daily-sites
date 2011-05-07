@@ -1,4 +1,8 @@
+<% javascript 'open_links' %>
+
 <h1>Listing sites</h1>
+
+<%= link_to 'Open links', '#', :id => 'open-links' %>
 
 <table>
   <tr>
@@ -13,7 +17,7 @@
   <% @sites.each do |site| %>
     <tr>
       <td class="site">
-        <%= link_to site.title, site.url, :target => '_newtab' %>
+        <%= link_to site.title, site.url, :target => '_newtab', :class => 'js-link' %>
       </td>
       <td><%= site.day_names %></td>
       <td><%= link_to 'Show', site %></td>
