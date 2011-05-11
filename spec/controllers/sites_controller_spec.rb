@@ -41,10 +41,10 @@ describe SitesController do
         assigns(:site).should be(mock_site)
       end
 
-      it "redirects to the created site" do
+      it "redirects to the homepage" do
         Site.stub(:new) { mock_site(:save => true) }
         post :create, :site => {}
-        response.should redirect_to(site_url(mock_site))
+        response.should redirect_to root_path
       end
     end
 
@@ -77,10 +77,10 @@ describe SitesController do
         assigns(:site).should be(mock_site)
       end
 
-      it "redirects to the site" do
+      it "redirects to the site list" do
         Site.stub(:find) { mock_site(:update_attributes => true) }
         put :update, :id => "1"
-        response.should redirect_to(site_url(mock_site))
+        response.should redirect_to root_path
       end
     end
 
@@ -106,10 +106,10 @@ describe SitesController do
       delete :destroy, :id => "37"
     end
 
-    it "redirects to the sites list" do
+    it "redirects to the home page" do
       Site.stub(:find) { mock_site }
       delete :destroy, :id => "1"
-      response.should redirect_to(sites_url)
+      response.should redirect_to root_path
     end
   end
 end

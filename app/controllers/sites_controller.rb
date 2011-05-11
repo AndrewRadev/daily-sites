@@ -20,7 +20,7 @@ class SitesController < ApplicationController
     @site = Site.new(params[:site])
 
     if @site.save
-      redirect_to @site, :notice => 'Site was successfully created.'
+      redirect_to root_path, :notice => 'Site was successfully created.'
     else
       render :action => :new
     end
@@ -30,7 +30,7 @@ class SitesController < ApplicationController
     @site = Site.find(params[:id])
 
     if @site.update_attributes(params[:site])
-      redirect_to @site, :notice => 'Site was successfully updated.'
+      redirect_to root_path, :notice => 'Site was successfully updated.'
     else
       render :action => :edit
     end
@@ -40,6 +40,6 @@ class SitesController < ApplicationController
     @site = Site.find(params[:id])
     @site.destroy
 
-    redirect_to sites_path
+    redirect_to root_path
   end
 end
