@@ -6,16 +6,16 @@
 
 <table>
   <tr>
-    <td>Site</td>
-    <td>Days</td>
+    <th>Site</th>
+    <th>Days</th>
 
-    <td></td>
-    <td></td>
-    <td></td>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
 
   <% @sites.each do |site| %>
-    <tr>
+    <tr class="<%= cycle('alt', '') %>">
       <td class="site">
         <%= link_to site.title, site.url, :target => '_newtab', :class => 'js-link' %>
       </td>

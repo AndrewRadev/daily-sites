@@ -78,7 +78,19 @@ table {
   width: 100%;
 }
 
-td, th {
-  border: 1px solid #aaa;
-  padding: 3px;
+table th {
+  color: #444;
+  border-bottom: 1px solid #aaa;
+}
+
+tr.alt {
+  background-color: #eee;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
