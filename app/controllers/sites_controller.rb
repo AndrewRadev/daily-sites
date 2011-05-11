@@ -3,6 +3,11 @@ class SitesController < ApplicationController
     @sites = Site.for_today
   end
 
+  def all
+    @sites = Site.all
+    render :index
+  end
+
   def new
     @site = Site.new
   end
