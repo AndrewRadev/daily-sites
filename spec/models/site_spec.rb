@@ -23,13 +23,26 @@ describe Site do
     site.days.should eq [Site::Monday, Site::Wednesday, Site::Friday].to_set
   end
 
-  it "displays the days it's active as a sentence" do
-    site = Site.create_sample :days => [Site::Friday, Site::Tuesday, Site::Saturday]
+  describe "#day_names" do
+    it "formats the days it's active as a sentence" do
+      site = Site.create_sample :days => [Site::Friday, Site::Tuesday, Site::Saturday]
+      site.day_names.should eq 'Tuesday, Friday, and Saturday'
+    end
 
-    site.save!
-    site.reload
+    it "uses something specific for weekends" do
+      site = Site.create_sample :days => [Site::Saturday, Site::Sunday]
+      site.day_names.should eq 'Weekends'
+    end
 
-    site.day_names.should eq 'tuesday, friday, and saturday'
+    it "uses something specific for weekdays" do
+      site = Site.create_sample :days => (Site::Monday .. Site::Friday).to_set
+      site.day_names.should eq 'Weekdays'
+    end
+
+    it "uses something specific for everyday sites" do
+      site = Site.create_sample :days => (Site::Monday .. Site::Sunday).to_set
+      site.day_names.should eq 'Every day'
+    end
   end
 
   it "retrieves sites, scheduled for the current day" do

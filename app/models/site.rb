@@ -42,7 +42,15 @@ class Site < ActiveRecord::Base
   end
 
   def day_names
-    days.to_a.sort.map { |d| DayNames[d] }.to_sentence
+    if days == [Saturday, Sunday].to_set
+      'Weekends'
+    elsif days == (Monday .. Friday).to_set
+      'Weekdays'
+    elsif days == (Monday .. Sunday).to_set
+      'Every day'
+    else
+      days.to_a.sort.map { |d| DayNames[d].capitalize }.to_sentence
+    end
   end
 
   class << self
