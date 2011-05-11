@@ -18,6 +18,8 @@ class Site < ActiveRecord::Base
   DayNames.each do |day, day_name|
     define_method "#{day_name}=" do |yes|
       if yes.to_i > 0
+        # TODO: It needs to be initialized here, not sure why
+        self.days ||= Set.new
         self.days << day
       else
         self.days.delete(day)

@@ -56,25 +56,41 @@ describe Site do
   end
 
   it "allows adding days one by one with a boolean flag" do
-    site = Site.sample :days => []
+    site = Site.sample :days => nil
     site.days.should be_empty
 
     site.monday = 1
+    site.should have(1).days
     site.days.should include Site::Monday
 
     site.tuesday = 1
+    site.should have(2).days
     site.days.should include Site::Tuesday
 
+    site.friday = 1
+    site.should have(3).days
+    site.days.should include Site::Friday
+
     site.monday = 0
+    site.should have(2).days
     site.days.should_not include Site::Monday
   end
 
+  it "allows mass-assigning days" do
+    attrs = Site.sample(:days => nil).attributes
+    site = Site.new(attrs.merge(:monday => '1', :tuesday => '1', :friday => '1'))
+
+    site.should be_valid
+    site.days.should eq [Site::Monday, Site::Tuesday, Site::Friday].to_set
+  end
+
   it "allows checking whether it's active for today" do
-    site = Site.create_sample :days => [Site::Monday, Site::Thursday]
+    site = Site.create_sample :days => [Site::Monday, Site::Thursday, Site::Friday]
 
     site.monday.should be_true
     site.tuesday.should be_false
     site.wednesday.should be_false
     site.thursday.should be_true
+    site.friday.should be_true
   end
 end
