@@ -3,10 +3,6 @@ class SitesController < ApplicationController
     @sites = Site.for_today
   end
 
-  def show
-    @site = Site.find(params[:id])
-  end
-
   def new
     @site = Site.new
   end

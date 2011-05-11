@@ -17,14 +17,6 @@ describe SitesController do
     end
   end
 
-  describe "show" do
-    it "assigns the requested site as @site" do
-      Site.stub(:find).with("37") { mock_site }
-      get :show, :id => "37"
-      assigns(:site).should be(mock_site)
-    end
-  end
-
   describe "new" do
     it "assigns a new site as @site" do
       Site.stub(:new) { mock_site }
