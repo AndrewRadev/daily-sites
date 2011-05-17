@@ -12,7 +12,13 @@ group :development, :test do
   gem 'rspec-rails'
 
   gem 'guard-rspec'
-  gem 'libnotify'
+
+  if RUBY_PLATFORM =~ /darwin/i
+    gem 'rb-fsevent', :require => false
+    gem 'growl',      :require => false
+  else
+    gem 'libnotify'
+  end
 end
 
 group :test do
