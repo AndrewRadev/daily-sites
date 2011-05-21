@@ -1,6 +1,7 @@
 class SitesController < ApplicationController
   def index
-    @sites = Site.for_today
+    @now   = DateTime.now
+    @sites = Site.for_day(@now)
   end
 
   def all
