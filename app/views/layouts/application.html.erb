@@ -17,7 +17,12 @@
       <% end %>
 
       <div class="right">
-        <%= link_to 'Sign in with twitter', '/auth/twitter' %>
+        <% if logged_in? %>
+          Signed in as <%= current_user.name %>.
+          <%= link_to 'Sign out', sign_out_path %>
+        <% else %>
+          <%= link_to 'Sign in with twitter', '/auth/twitter' %>
+        <% end %>
       </div>
 
       <%= content_tag :h1, yield(:title) if show_title? %>
