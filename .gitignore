@@ -7,3 +7,6 @@ config/database.yml
 _project.vim
 tags
 gems.tags
+
+# For environment variables
+script/server
