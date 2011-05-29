@@ -13,4 +13,5 @@ DailySites::Application.routes.draw do
   end
 
   resource :session
+  resource :profile, :only => [:show, :edit, :update, :destroy]
 end

@@ -1,0 +1,29 @@
+<h1>Edit profile</h1>
+
+<%= form_for current_user, :url => profile_path do |f| %>
+  <% if current_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
+
+      <ul>
+        <% @site.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= button_group do %>
+  <%= button_link_to "Go to your sites", sites_path %>
+  <%= button_link_to "Show profile", profile_path %>
+<% end %>

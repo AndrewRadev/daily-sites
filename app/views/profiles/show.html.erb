@@ -1,0 +1,13 @@
+<h1>Your profile</h1>
+
+<p>Name:       <strong><%= current_user.name %></strong></p>
+<p>Twitter ID: <strong><%= current_user.uid %></strong></p>
+
+<%= button_group do %>
+  <%= button_link_to "Go to your sites", sites_path %>
+  <%= edit_button_link_to "Edit profile", edit_profile_path %>
+  <%= negative_remove_button_link_to "Delete account", profile_path, {
+    :confirm => 'Are you really, really sure you want to delete your account?',
+    :method => :delete
+  } %>
+<% end %>

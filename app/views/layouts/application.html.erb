@@ -19,8 +19,8 @@
 
       <div class="right">
         <% if logged_in? %>
-          Signed in as <%= current_user.name %>.
-          <%= link_to 'Sign out', sign_out_path %>
+          Signed in as <%= link_to current_user.name, profile_path %>.
+          <%= button_link_to 'Sign out', sign_out_path %>
         <% else %>
           <%= link_to 'Sign in with twitter', '/auth/twitter' %>
         <% end %>
