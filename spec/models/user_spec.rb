@@ -1,6 +1,17 @@
 require 'spec_helper'
 
 describe User do
+  before :each do
+    Factory(:user) # for uniqueness check
+    User.where(:uid => auth[:uid]).destroy_all
+  end
+
+  it { should validate_presence_of(:uid) }
+  it { should validate_presence_of(:provider) }
+  it { should validate_presence_of(:name) }
+
+  it { should validate_uniqueness_of(:uid) }
+
   let(:auth) do
     {
       :uid       => '123',
@@ -20,7 +31,7 @@ describe User do
   end
 
   it "can be found from omniauth data" do
-    User.create_sample(:uid => auth[:uid], :provider => auth[:provider])
+    Factory(:user, :uid => auth[:uid], :provider => auth[:provider])
     user = User.find_from_omniauth(auth)
 
     user.should be_present

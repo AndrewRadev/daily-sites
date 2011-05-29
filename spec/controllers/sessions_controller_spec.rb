@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SessionsController do
   describe "create" do
-    let(:user) { User.sample }
+    let(:user) { Factory(:user) }
 
     before :each do
       User.stub(:find_or_create_from_omniauth => user)

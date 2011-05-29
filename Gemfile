@@ -24,7 +24,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'sample_models'
+  gem 'factory_girl'
   gem 'shoulda'
   gem 'timecop'
   gem 'spork'

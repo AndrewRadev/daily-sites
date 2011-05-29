@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  validates :uid, :provider, :name, :presence => true
+  validates :uid, :uniqueness => true
+
   class << self
     def find_or_create_from_omniauth(auth)
       find_from_omniauth(auth) || create_from_omniauth(auth)

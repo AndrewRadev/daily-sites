@@ -7,9 +7,9 @@ describe SitesController do
 
   describe "index" do
     it "assigns to @sites" do
-      Site.sample
+      Factory(:site)
       get :index
-      assigns(:sites).should be_present
+      assigns(:sites).should_not be_nil
     end
 
     it "retrieves sites only for the current day" do

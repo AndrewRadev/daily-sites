@@ -16,10 +16,7 @@ Spork.each_run do
   DailySites::Application.reload_routes!
 
   RSpec.configure do |config|
+    config.use_transactional_fixtures = true
     config.mock_with :rspec
-  end
-
-  SampleModels.configure(Site) do |site|
-    site.url.default 'http://example.com'
   end
 end
