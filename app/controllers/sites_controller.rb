@@ -4,10 +4,13 @@ class SitesController < ApplicationController
   def index
     @now   = DateTime.now
     @sites = current_user.sites.for_day(@now)
+    @title = "Sites for today"
   end
 
   def all
-    @sites = Site.all
+    @now   = DateTime.now
+    @sites = current_user.sites
+    @title = "All sites"
     render :index
   end
 

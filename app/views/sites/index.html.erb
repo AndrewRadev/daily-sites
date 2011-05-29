@@ -1,6 +1,6 @@
 <% javascript 'open_links' %>
 
-<h1>Listing sites</h1>
+<h1><%= @title %></h1>
 
 <p>
   Now is <strong><%= @now.to_s(:long) %></strong>
@@ -33,7 +33,8 @@
 
 <br />
 
-<% button_group do %>
-  <%= button_link_to 'New site', new_site_path %>
-  <%= button_link_to 'All sites', all_sites_path %>
+<%= button_group do %>
+  <%= button_link_to 'New site',        new_site_path %>
+  <%= button_link_to 'Sites for today', sites_path %>
+  <%= button_link_to 'All sites',       all_sites_path %>
 <% end %>

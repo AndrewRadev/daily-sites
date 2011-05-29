@@ -38,6 +38,13 @@ describe SitesController do
     end
   end
 
+  describe "all" do
+    it "retrieves all sites for the current user" do
+      current_user.should_receive(:sites).once.and_return [mock_site]
+      get :all
+    end
+  end
+
   describe "new" do
     it "assigns a new site as @site" do
       Site.stub(:new) { mock_site }
