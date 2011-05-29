@@ -6,6 +6,8 @@ describe User do
     User.where(:uid => auth[:uid]).destroy_all
   end
 
+  it { should have_many(:sites) }
+
   it { should validate_presence_of(:uid) }
   it { should validate_presence_of(:provider) }
   it { should validate_presence_of(:name) }

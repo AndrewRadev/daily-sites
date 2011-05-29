@@ -1,7 +1,7 @@
 class SitesController < ApplicationController
   def index
     @now   = DateTime.now
-    @sites = Site.for_day(@now)
+    @sites = current_user.sites.for_day(@now)
   end
 
   def all

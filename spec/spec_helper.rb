@@ -18,5 +18,7 @@ Spork.each_run do
   RSpec.configure do |config|
     config.use_transactional_fixtures = true
     config.mock_with :rspec
+
+    config.include Authentication, :type => :controller
   end
 end

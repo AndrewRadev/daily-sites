@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe SitesController do
+  render_views
+
+  before :each do
+    log_in_as Factory(:user)
+  end
+
   def mock_site(stubs={})
     @mock_site ||= mock_model(Site, stubs).as_null_object
   end
@@ -15,9 +21,14 @@ describe SitesController do
     it "retrieves sites only for the current day" do
       Timecop.freeze do
         now = DateTime.now
-        Site.should_receive(:for_day).with(now).once
+        Site.should_receive(:for_day).with(now).once.and_return(Site.scoped)
         get :index
       end
+    end
+
+    it "retrieves sites only for the current user" do
+      current_user.should_receive(:sites).once.and_return(Site.scoped)
+      get :index
     end
   end
 
