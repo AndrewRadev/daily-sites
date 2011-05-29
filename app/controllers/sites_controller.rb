@@ -1,4 +1,6 @@
 class SitesController < ApplicationController
+  before_filter :require_user
+
   def index
     @now   = DateTime.now
     @sites = current_user.sites.for_day(@now)

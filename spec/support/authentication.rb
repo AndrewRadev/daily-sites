@@ -4,6 +4,11 @@ module Authentication
     @current_user = user
   end
 
+  def log_out
+    controller.stub(:current_user => nil)
+    @current_user = nil
+  end
+
   def current_user
     @current_user
   end

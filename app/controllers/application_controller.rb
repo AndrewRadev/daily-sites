@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def require_user
+    if not logged_in?
+      redirect_to about_page_path
+    end
+  end
+
   def current_user
     @current_user ||= begin
       User.find(session[:user_id]) if session[:user_id]

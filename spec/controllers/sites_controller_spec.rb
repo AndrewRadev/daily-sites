@@ -30,6 +30,12 @@ describe SitesController do
       current_user.should_receive(:sites).once.and_return(Site.scoped)
       get :index
     end
+
+    it "redirects to an explanation page if no user is logged in" do
+      log_out
+      get :index
+      response.should redirect_to about_page_path
+    end
   end
 
   describe "new" do
