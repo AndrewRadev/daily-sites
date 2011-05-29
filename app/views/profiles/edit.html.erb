@@ -18,6 +18,11 @@
     <%= f.text_field :name %>
   </div>
 
+  <div class="field">
+    <%= f.label :time_zone %><br />
+    <%= f.time_zone_select :time_zone %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

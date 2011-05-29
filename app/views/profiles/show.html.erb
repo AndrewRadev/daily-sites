@@ -2,6 +2,7 @@
 
 <p>Name:       <strong><%= current_user.name %></strong></p>
 <p>Twitter ID: <strong><%= current_user.uid %></strong></p>
+<p>Time zone:  <strong><%= current_user.time_zone %></strong></p>
 
 <%= button_group do %>
   <%= button_link_to "Go to your sites", sites_path %>
