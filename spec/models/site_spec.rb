@@ -45,19 +45,17 @@ describe Site do
     end
   end
 
-  it "retrieves sites, scheduled for the current day" do
+  it "retrieves sites, scheduled for a specific day" do
     weekdays = Site.create_sample :days => (Site::Monday .. Site::Friday)
     weekends = Site.create_sample :days => [Site::Saturday, Site::Sunday]
 
-    Timecop.freeze Date.parse('2011-05-01') do # Sunday
-      Site.for_today.should include weekends
-      Site.for_today.should_not include weekdays
-    end
+    sunday = Date.parse('2011-05-01')
+    Site.for_day(sunday).should include weekends
+    Site.for_day(sunday).should_not include weekdays
 
-    Timecop.freeze Date.parse('2011-05-04') do # Wednesday
-      Site.for_today.should_not include weekends
-      Site.for_today.should include weekdays
-    end
+    wednesday = Date.parse('2011-05-04')
+    Site.for_day(wednesday).should_not include weekends
+    Site.for_day(wednesday).should include weekdays
   end
 
   it "allows adding days one by one by appending to #days" do
@@ -97,7 +95,7 @@ describe Site do
     site.days.should eq [Site::Monday, Site::Tuesday, Site::Friday].to_set
   end
 
-  it "allows checking whether it's active for today" do
+  it "allows checking whether it's active for a specific day" do
     site = Site.create_sample :days => [Site::Monday, Site::Thursday, Site::Friday]
 
     site.monday.should be_true

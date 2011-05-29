@@ -12,8 +12,11 @@ describe SitesController do
     end
 
     it "retrieves sites only for the current day" do
-      Site.should_receive(:for_today).once
-      get :index
+      Timecop.freeze do
+        now = DateTime.now
+        Site.should_receive(:for_day).with(now).once
+        get :index
+      end
     end
   end
 
