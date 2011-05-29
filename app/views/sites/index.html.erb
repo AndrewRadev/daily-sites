@@ -6,15 +6,13 @@
   Now is <strong><%= @now.to_s(:long) %></strong>
 </p>
 
-<%= link_to 'Open links', '#', :id => 'open-links' %>
+<%= big_button_link_to 'Open links', '#', :id => 'open-links' %>
 
 <table>
   <tr>
     <th>Site</th>
     <th>Days</th>
-
-    <th></th>
-    <th></th>
+    <th>Actions</th>
   </tr>
 
   <% @sites.each do |site| %>
@@ -23,13 +21,19 @@
         <%= link_to site.title, site.url, :target => '_newtab', :class => 'js-link' %>
       </td>
       <td><%= site.day_names %></td>
-      <td><%= link_to 'Edit', edit_site_path(site) %></td>
-      <td><%= link_to 'Destroy', site, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td align="center">
+        <%= button_group do %>
+          <%= edit_button_link_to 'Edit', edit_site_path(site) %>
+          <%= negative_remove_button_link_to 'Remove', site, :confirm => 'Are you sure?', :method => :delete %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New site', new_site_path %> |
-<%= link_to 'All sites', all_sites_path %>
+<% button_group do %>
+  <%= button_link_to 'New site', new_site_path %>
+  <%= button_link_to 'All sites', all_sites_path %>
+<% end %>
