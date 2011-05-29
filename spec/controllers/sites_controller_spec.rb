@@ -7,6 +7,7 @@ describe SitesController do
 
   describe "index" do
     it "assigns to @sites" do
+      Site.sample
       get :index
       assigns(:sites).should be_present
     end
