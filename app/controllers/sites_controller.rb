@@ -2,13 +2,11 @@ class SitesController < ApplicationController
   before_filter :require_user
 
   def index
-    @now   = DateTime.now.in_time_zone(current_user.time_zone)
-    @sites = current_user.sites.for_day(@now)
+    @sites = current_user.sites.for_time(current_time)
     @title = "Sites for today"
   end
 
   def all
-    @now   = DateTime.now.in_time_zone(current_user.time_zone)
     @sites = current_user.sites
     @title = "All sites"
     render :index
@@ -48,4 +46,11 @@ class SitesController < ApplicationController
 
     redirect_to root_path
   end
+
+  private
+
+  def current_time
+    DateTime.now.in_time_zone(current_user.time_zone)
+  end
+  helper_method :current_time
 end

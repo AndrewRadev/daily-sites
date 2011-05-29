@@ -53,12 +53,12 @@ describe Site do
     weekends = Factory(:site, :days => [Site::Saturday, Site::Sunday])
 
     sunday = Date.parse('2011-05-01')
-    Site.for_day(sunday).should include weekends
-    Site.for_day(sunday).should_not include weekdays
+    Site.for_time(sunday).should include weekends
+    Site.for_time(sunday).should_not include weekdays
 
     wednesday = Date.parse('2011-05-04')
-    Site.for_day(wednesday).should_not include weekends
-    Site.for_day(wednesday).should include weekdays
+    Site.for_time(wednesday).should_not include weekends
+    Site.for_time(wednesday).should include weekdays
   end
 
   it "allows adding days one by one by appending to #days" do

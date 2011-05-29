@@ -56,9 +56,9 @@ class Site < ActiveRecord::Base
   end
 
   class << self
-    def for_day(date)
+    def for_time(time)
       Site.order('title').all.select do |s|
-        s.days.include? date.cwday
+        s.days.include? time.cwday
       end
     end
   end

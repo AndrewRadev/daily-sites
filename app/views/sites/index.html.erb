@@ -3,7 +3,7 @@
 <h1><%= @title %></h1>
 
 <p>
-  Now is <strong><%= @now.to_s(:long) %></strong>
+  Now is <strong><%= current_time.to_s(:long) %></strong>
 </p>
 
 <%= big_button_link_to 'Open links', '#', :id => 'open-links' %>
