@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.7'
 gem 'rake', '~> 0.8.7'
+gem 'sass'
 gem 'sqlite3'
 gem 'oa-oauth'
 gem 'css3buttons'
