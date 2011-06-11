@@ -21,7 +21,8 @@ class SitesController < ApplicationController
   end
 
   def create
-    @site = Site.new(params[:site])
+    @site      = Site.new(params[:site])
+    @site.user = current_user
 
     if @site.save
       redirect_to root_path, :notice => 'Site was successfully created.'

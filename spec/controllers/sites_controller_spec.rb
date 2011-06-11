@@ -74,11 +74,18 @@ describe SitesController do
         post :create, :site => {}
         response.should redirect_to root_path
       end
+
+      it "assigns the current user as the site's owner" do
+        Site.stub(:new) { mock_site(:save => true) }
+        post :create, :site => {}
+        response.should redirect_to root_path
+      end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved site as @site" do
         Site.stub(:new).with({'these' => 'params'}) { mock_site(:save => false) }
+        mock_site.should_receive(:user=).with(current_user)
         post :create, :site => {'these' => 'params'}
         assigns(:site).should be(mock_site)
       end
