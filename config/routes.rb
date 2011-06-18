@@ -5,7 +5,6 @@ DailySites::Application.routes.draw do
   match '/signout'                 => 'sessions#destroy', :as => :sign_out
 
   get '/pages/about' => 'pages#about', :as => 'about_page'
-  get '/pages/paq'   => 'pages#paq',   :as => 'paq_page'
 
   resources :sites, :except => [:show] do
     collection do
