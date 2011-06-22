@@ -98,3 +98,13 @@ a:hover {
 .right {
   float: right;
 }
+
+.center {
+  display: block;
+  text-align: center;
+}
+
+.login {
+  font-size: 16pt;
+  padding: 10px;
+}

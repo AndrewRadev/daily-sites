@@ -1,8 +1,5 @@
 <p>Hello, there.</p>
 
-<p>
-  <%= link_to 'Sign in with twitter', '/auth/twitter' %> |
-  <%= link_to 'Sign in with facebook', '/auth/facebook' %>
-</p>
+<%= render 'shared/logins' %>
 
 <p><%= link_to 'What is this about?', about_page_path %>
