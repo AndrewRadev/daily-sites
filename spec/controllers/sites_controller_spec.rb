@@ -31,10 +31,10 @@ describe SitesController do
       get :index
     end
 
-    it "redirects to an explanation page if no user is logged in" do
+    it "redirects to a login page if no user is logged in" do
       log_out
       get :index
-      response.should redirect_to about_page_path
+      response.should redirect_to login_page_path
     end
   end
 
