@@ -3,17 +3,13 @@ require 'spec_helper'
 describe User do
   before :each do
     Factory(:user) # for uniqueness check
-    User.where(:uid => auth[:uid]).destroy_all
+    Registration.where(:uid => auth[:uid]).destroy_all
   end
 
   it { should have_many(:sites) }
   it { should have_many(:registrations) }
 
-  it { should validate_presence_of(:uid) }
-  it { should validate_presence_of(:provider) }
   it { should validate_presence_of(:name) }
-
-  it { should validate_uniqueness_of(:uid) }
 
   let(:auth) do
     {
@@ -27,14 +23,16 @@ describe User do
 
   it "can be created from omniauth data" do
     user = User.create_from_omniauth(auth)
+    registration = user.registrations.first
+    registration.should be_present
 
-    user.uid.should eq auth[:uid]
-    user.provider.should eq auth[:provider]
     user.name.should eq auth[:user_info][:name]
+    registration.uid.should eq auth[:uid]
+    registration.provider.should eq auth[:provider]
   end
 
   it "can be found from omniauth data" do
-    Factory(:user, :uid => auth[:uid], :provider => auth[:provider])
+    Factory(:registration, :uid => auth[:uid], :provider => auth[:provider])
     user = User.find_from_omniauth(auth)
 
     user.should be_present

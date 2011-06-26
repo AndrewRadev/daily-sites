@@ -1,5 +1,7 @@
 Factory.define(:user) do |u|
-  u.sequence(:uid) { |n| "#{n}" }
-  u.provider 'twitter'
   u.name 'joe'
+
+  u.after_build do |u|
+    u.registrations << Factory(:registration, :user => u)
+  end
 end

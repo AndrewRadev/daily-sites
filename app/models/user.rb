@@ -2,8 +2,7 @@ class User < ActiveRecord::Base
   has_many :sites
   has_many :registrations
 
-  validates :uid, :provider, :name, :presence => true
-  validates :uid, :uniqueness => true
+  validates :name, :presence => true
 
   class << self
     def find_or_create_from_omniauth(auth)
@@ -14,16 +13,19 @@ class User < ActiveRecord::Base
       auth = auth.deep_symbolize_keys
 
       create! do |u|
-        u.uid      = auth[:uid]
-        u.provider = auth[:provider]
-        u.name     = auth[:user_info][:name]
+        u.name = auth[:user_info][:name]
+        u.registrations.build do |r|
+          r.uid      = auth[:uid]
+          r.provider = auth[:provider]
+        end
       end
     end
 
     def find_from_omniauth(auth)
       auth = auth.deep_symbolize_keys
 
-      find_by_uid_and_provider(auth[:uid], auth[:provider])
+      registration = Registration.find_by_uid_and_provider(auth[:uid], auth[:provider])
+      registration.try(:user)
     end
   end
 end
