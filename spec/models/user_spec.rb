@@ -7,6 +7,7 @@ describe User do
   end
 
   it { should have_many(:sites) }
+  it { should have_many(:registrations) }
 
   it { should validate_presence_of(:uid) }
   it { should validate_presence_of(:provider) }

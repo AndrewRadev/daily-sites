@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :sites
+  has_many :registrations
 
   validates :uid, :provider, :name, :presence => true
   validates :uid, :uniqueness => true

@@ -10,11 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110626155229) do
+ActiveRecord::Schema.define(:version => 20110626155451) do
 
   create_table "registrations", :force => true do |t|
     t.string   "uid"
     t.string   "provider"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
