@@ -8,10 +8,14 @@ task :fake => :environment do
   end
 
   5.times do
-    User.create! do |user|
-      user.uid      = Time.now.to_f.to_s + rand.to_s
-      user.provider = 'twitter'
-      user.name     = Faker::Name.name
+    user = User.create! do |user|
+      user.name = Faker::Name.name
+    end
+
+    Registration.create! do |registration|
+      registration.user     = user
+      registration.provider = 'twitter'
+      registration.uid      = Time.now.to_f.to_s + rand.to_s
     end
   end
 
