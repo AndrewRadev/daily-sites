@@ -12,13 +12,17 @@ class User < ActiveRecord::Base
     def create_from_omniauth(auth)
       auth = auth.deep_symbolize_keys
 
-      create! do |u|
+      user = create! do |u|
         u.name = auth[:user_info][:name]
-        u.registrations.build do |r|
-          r.uid      = auth[:uid]
-          r.provider = auth[:provider]
-        end
       end
+
+      Registration.create! do |r|
+        r.uid      = auth[:uid]
+        r.provider = auth[:provider]
+        r.user     = user
+      end
+
+      user
     end
 
     def find_from_omniauth(auth)
