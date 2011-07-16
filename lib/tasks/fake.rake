@@ -1,10 +1,16 @@
 desc "Populate the database with fake data"
 task :fake => :environment do
   User.destroy_all
-  User.create! do |admin|
-    admin.uid      = '96514539'
-    admin.provider = 'twitter'
-    admin.name     = 'Andrew'
+  Registration.destroy_all
+
+  admin = User.create! do |admin|
+    admin.name = 'Andrew'
+
+    admin.registrations.build do |r|
+      r.user     = admin
+      r.uid      = '96514539'
+      r.provider = 'twitter'
+    end
   end
 
   5.times do
