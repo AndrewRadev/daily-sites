@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :sites
-  has_many :registrations
+  has_many :sites,         :dependent => :destroy
+  has_many :registrations, :dependent => :destroy
 
   validates :name, :presence => true
 
