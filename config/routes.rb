@@ -1,7 +1,9 @@
 DailySites::Application.routes.draw do
   root :to => 'sites#index'
 
-  match '/auth/:provider/callback' => 'sessions#create'
+  post 'omniauth/callback'         => 'omniauth#callback', :as => :omniauth
+  match '/auth/:provider/callback' => 'omniauth#callback'
+
   match '/signout'                 => 'sessions#destroy', :as => :sign_out
 
   get '/pages/about' => 'pages#about', :as => 'about_page'
@@ -13,6 +15,6 @@ DailySites::Application.routes.draw do
     end
   end
 
-  resource :session
+  resource :session, :only => [:destroy]
   resource :profile, :only => [:show, :edit, :update, :destroy]
 end
