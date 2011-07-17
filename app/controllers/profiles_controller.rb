@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
 
   def update
     if current_user.update_attributes(params[:user])
-      redirect_to profile_path, :notice => 'Your profile was successfully updated.'
+      redirect_to profile_path, :notice => 'Your profile was updated.'
     else
       render :action => :edit
     end

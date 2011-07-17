@@ -24,7 +24,10 @@
       <td align="center">
         <%= button_group do %>
           <%= edit_button_link_to 'Edit', edit_site_path(site) %>
-          <%= negative_remove_button_link_to 'Remove', site, :confirm => 'Are you sure?', :method => :delete %>
+          <%= negative_remove_button_link_to 'Remove', site, {
+            :confirm => 'Are you sure?',
+            :method  => :delete
+          } %>
         <% end %>
       </td>
     </tr>
