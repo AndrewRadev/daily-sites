@@ -5,9 +5,16 @@
 
 <p>
   <h2>Registrations:</h2>
-  <% current_user.registrations.each do |registration| %>
-    <%= registration.provider %>: <strong><%= registration.uid %></strong>
-  <% end %>
+  <ul>
+    <% current_user.registrations.each do |registration| %>
+      <li><%= registration.provider %>: <strong><%= registration.uid %></strong></li>
+    <% end %>
+  </ul>
+
+  <div>
+    <%= link_to 'Add twitter registration', '/auth/twitter' %> |
+    <%= link_to 'Add facebook registration', '/auth/facebook' %>
+  </div>
 </p>
 
 <%= button_group do %>

@@ -37,4 +37,13 @@ describe User do
 
     user.should be_present
   end
+
+  it "can create additional registrations from omniauth data" do
+    user = Factory(:user)
+
+    expect {
+      user.create_registration_from_omniauth(auth.merge(:uid => '234'))
+      user.reload
+    }.to change(user.registrations, :count).by +1
+  end
 end
