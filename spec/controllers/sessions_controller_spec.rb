@@ -37,7 +37,7 @@ describe SessionsController do
 
     it "redirects to the about page" do
       delete :destroy
-      response.should redirect_to about_page_path
+      response.should redirect_to login_page_path
     end
   end
 end
