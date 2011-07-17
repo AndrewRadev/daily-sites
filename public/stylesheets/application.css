@@ -99,6 +99,10 @@ a:hover {
   float: right;
 }
 
+.button-group {
+  vertical-align: middle;
+}
+
 .center {
   display: block;
   text-align: center;

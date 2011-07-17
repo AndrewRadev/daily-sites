@@ -21,8 +21,6 @@
         <% if logged_in? %>
           Signed in as <%= current_user.name %>.
 
-          <br />
-
           <% button_group do %>
             <%= button_link_to 'View profile', profile_path %>
             <%= button_link_to 'Sign out', sign_out_path %>
