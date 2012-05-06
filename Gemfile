@@ -8,6 +8,7 @@ gem 'css3buttons'
 group :development do
   gem 'faker'
   gem 'nifty-generators'
+  gem 'heroku'
 end
 
 group :development, :test do
