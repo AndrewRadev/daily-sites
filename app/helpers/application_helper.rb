@@ -10,4 +10,12 @@ module ApplicationHelper
       'com',
     ].join('').html_safe
   end
+
+  def favicon(site)
+    image_tag "http://g.etfv.co/#{site.url}", {
+      :title => site.title,
+      :size  => '16x16',
+      :class => 'favicon'
+    }
+  end
 end

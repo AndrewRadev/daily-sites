@@ -18,6 +18,7 @@
   <% @sites.each do |site| %>
     <tr class="<%= cycle('alt', '') %>">
       <td class="site">
+        <%= favicon site %>
         <%= link_to site.title, site.url, :target => '_newtab', :class => 'js-link' %>
       </td>
       <td><%= site.day_names %></td>
