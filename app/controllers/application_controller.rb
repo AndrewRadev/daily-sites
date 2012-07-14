@@ -19,8 +19,6 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
 
-  private
-
   def find_current_user
     if session[:user_id]
       User.find(session[:user_id])
