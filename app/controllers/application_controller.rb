@@ -25,7 +25,9 @@ class ApplicationController < ActionController::Base
     if session[:user_id]
       User.find(session[:user_id])
     elsif cookies.signed['remember_user_token']
-      User.serialize_from_cookie(cookies.signed['remember_user_token'])
+      user = User.serialize_from_cookie(cookies.signed['remember_user_token'])
+      session[:user_id] = user.id
+      user
     end
   rescue ActiveRecord::RecordNotFound
     session[:user_id] = nil
