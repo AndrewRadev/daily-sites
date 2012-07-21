@@ -15,8 +15,9 @@ class OmniauthController < ApplicationController
       user = User.find_or_create_from_omniauth(auth)
       session[:user_id] = user.id
       cookies.signed['remember_user_token'] = {
-        :value   => user.serialize_into_cookie,
-        :expires => user.remember_token_expires_at,
+        :httponly => true,
+        :value    => user.serialize_into_cookie,
+        :expires  => user.remember_token_expires_at,
       }
       redirect_to root_path
     end

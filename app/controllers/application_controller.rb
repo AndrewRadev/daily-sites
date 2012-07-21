@@ -6,9 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def require_user
-    if not logged_in?
-      redirect_to login_page_path
-    end
+    redirect_to login_page_path if not logged_in?
   end
 
   def current_user
