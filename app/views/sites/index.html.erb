@@ -1,5 +1,3 @@
-<% javascript 'open_links' %>
-
 <h1><%= @title %></h1>
 
 <p>
@@ -42,3 +40,5 @@
   <%= big_button_link_to 'Sites for today', sites_path %>
   <%= big_button_link_to 'All sites',       all_sites_path %>
 <% end %>
+
+Or, show sites for day: <%= select_tag 'day', options_for_select(Site.day_names_for_select), :class => 'day-select' %>

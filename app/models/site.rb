@@ -56,10 +56,18 @@ class Site < ActiveRecord::Base
   end
 
   class << self
-    def for_time(time)
+    def day_names_for_select
+      DayNames.invert
+    end
+
+    def for_day(day)
       Site.order('title').all.select do |s|
-        s.days.include? time.cwday
+        s.days.include? day
       end
+    end
+
+    def for_time(time)
+      for_day(time.cwday)
     end
   end
 end

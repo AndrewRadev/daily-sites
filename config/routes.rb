@@ -15,6 +15,8 @@ DailySites::Application.routes.draw do
     end
   end
 
+  get '/sites/daily/:day' => 'sites#daily'
+
   resource :session, :only => [:destroy]
   resource :profile, :only => [:show, :edit, :update, :destroy]
 

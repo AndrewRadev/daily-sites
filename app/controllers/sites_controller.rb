@@ -12,6 +12,14 @@ class SitesController < ApplicationController
     render :index
   end
 
+  def daily
+    day    = params[:day].to_i
+    @sites = current_user.sites.for_day(day)
+    @title = "Sites for #{Site::DayNames[day]}"
+
+    render :index
+  end
+
   def new
     @site = Site.new
   end
