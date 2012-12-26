@@ -17,4 +17,8 @@ DailySites::Application.routes.draw do
 
   resource :session, :only => [:destroy]
   resource :profile, :only => [:show, :edit, :update, :destroy]
+
+  if Rails.env.development?
+    get '/backdoor(/:id)' => 'sessions#backdoor'
+  end
 end
