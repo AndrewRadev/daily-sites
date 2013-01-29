@@ -3,12 +3,6 @@ require 'spec_helper'
 describe Site do
   let(:site) { Factory(:site) }
 
-  it { should belong_to(:user) }
-
-  it { should validate_presence_of(:user) }
-  it { should validate_presence_of(:title) }
-  it { should validate_presence_of(:url) }
-
   it "should validate the correctness of the url" do
     site.url = 'invalid'
     site.should be_invalid

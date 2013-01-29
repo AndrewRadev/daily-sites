@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.2.11'
 gem 'sqlite3'
 gem 'oa-oauth'
 gem 'css3buttons'

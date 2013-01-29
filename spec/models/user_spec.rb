@@ -6,11 +6,6 @@ describe User do
     Registration.where(:uid => auth[:uid]).destroy_all
   end
 
-  it { should have_many(:sites) }
-  it { should have_many(:registrations) }
-
-  it { should validate_presence_of(:name) }
-
   let(:auth) do
     {
       :uid       => '123',
