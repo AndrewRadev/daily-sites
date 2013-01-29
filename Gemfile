@@ -2,7 +2,9 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
 gem 'sqlite3'
-gem 'oa-oauth'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 gem 'css3buttons'
 
 group :development do
