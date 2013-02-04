@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   before :each do
-    Factory(:user) # for uniqueness check
+    create(:user) # for uniqueness check
     Registration.where(:uid => auth[:uid]).destroy_all
   end
 
@@ -27,14 +27,14 @@ describe User do
   end
 
   it "can be found from omniauth data" do
-    Factory(:registration, :uid => auth[:uid], :provider => auth[:provider])
+    create(:registration, :uid => auth[:uid], :provider => auth[:provider])
     user = User.find_from_omniauth(auth)
 
     user.should be_present
   end
 
   it "can create additional registrations from omniauth data" do
-    user = Factory(:user)
+    user = create(:user)
 
     expect {
       user.create_registration_from_omniauth(auth.merge(:uid => '234'))
@@ -44,7 +44,7 @@ describe User do
 
   describe "(remember me)" do
     it "can be saved and loaded using a cookie" do
-      user = Factory(:user)
+      user = create(:user)
 
       user.remember_token.should be_present
       user.serialize_into_cookie.should eq [user.id, user.remember_token]
@@ -54,7 +54,7 @@ describe User do
     end
 
     it "is regenerated after two weeks" do
-      user  = Factory(:user)
+      user  = create(:user)
       token = user.remember_token
 
       Timecop.freeze((2.weeks - 1.day).from_now) { user.remember_token.should eq token }

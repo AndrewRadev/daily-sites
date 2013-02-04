@@ -1,6 +1,8 @@
-Factory.define(:registration) do |r|
-  r.sequence(:uid) { |n| "#{n}" }
-  r.provider 'twitter'
+FactoryGirl.define do
+  factory :registration do
+    sequence(:uid) { |n| "#{n}" }
+    provider 'twitter'
 
-  r.association(:user)
+    user
+  end
 end

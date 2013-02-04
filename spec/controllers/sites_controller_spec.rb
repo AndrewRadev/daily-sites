@@ -4,7 +4,7 @@ describe SitesController do
   render_views
 
   before :each do
-    log_in_as Factory(:user)
+    log_in_as create(:user)
   end
 
   def mock_site(stubs={})
@@ -13,7 +13,7 @@ describe SitesController do
 
   describe "index" do
     it "assigns to @sites" do
-      Factory(:site)
+      create(:site)
       get :index
       assigns(:sites).should_not be_nil
     end

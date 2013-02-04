@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe OmniauthController do
   describe "callback" do
-    let(:user) { Factory(:user) }
+    let(:user) { create(:user) }
 
     before :each do
       User.stub(:find_or_create_from_omniauth => user)
@@ -31,7 +31,7 @@ describe OmniauthController do
 
     context "user logged in" do
       before :each do
-        log_in_as Factory(:user)
+        log_in_as create(:user)
         current_user.stub(:create_registration_from_omniauth => true)
         Registration.stub(:already_created? => false)
       end

@@ -7,6 +7,7 @@ Spork.prefork do
   require 'rspec/rails'
 
   ActiveSupport::Dependencies.clear
+  include FactoryGirl::Syntax::Methods
 end
 
 Spork.each_run do

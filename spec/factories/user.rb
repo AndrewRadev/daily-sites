@@ -1,7 +1,9 @@
-Factory.define(:user) do |u|
-  u.name 'joe'
+FactoryGirl.define do
+  factory :user do
+    name 'joe'
 
-  u.after_build do |u|
-    u.registrations << Factory(:registration, :user => u)
+    after(:build) do |user, evaluator|
+      user.registrations << FactoryGirl.create(:registration, :user => user)
+    end
   end
 end

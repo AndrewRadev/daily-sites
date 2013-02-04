@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Site do
-  let(:site) { Factory(:site) }
+  let(:site) { create(:site) }
 
   it "should validate the correctness of the url" do
     site.url = 'invalid'
@@ -12,7 +12,7 @@ describe Site do
   end
 
   it "keeps the days it's active in a set" do
-    site = Factory(:site, :days => [Site::Wednesday, Site::Monday, Site::Friday])
+    site = create(:site, :days => [Site::Wednesday, Site::Monday, Site::Friday])
 
     site.save!
     site.reload
@@ -22,29 +22,29 @@ describe Site do
 
   describe "#day_names" do
     it "formats the days it's active as a sentence" do
-      site = Factory(:site, :days => [Site::Friday, Site::Tuesday, Site::Saturday])
+      site = create(:site, :days => [Site::Friday, Site::Tuesday, Site::Saturday])
       site.day_names.should eq 'Tuesday, Friday, and Saturday'
     end
 
     it "uses something specific for weekends" do
-      site = Factory(:site, :days => [Site::Saturday, Site::Sunday])
+      site = create(:site, :days => [Site::Saturday, Site::Sunday])
       site.day_names.should eq 'Weekends'
     end
 
     it "uses something specific for weekdays" do
-      site = Factory(:site, :days => (Site::Monday .. Site::Friday).to_set)
+      site = create(:site, :days => (Site::Monday .. Site::Friday).to_set)
       site.day_names.should eq 'Weekdays'
     end
 
     it "uses something specific for everyday sites" do
-      site = Factory(:site, :days => (Site::Monday .. Site::Sunday).to_set)
+      site = create(:site, :days => (Site::Monday .. Site::Sunday).to_set)
       site.day_names.should eq 'Every day'
     end
   end
 
   it "retrieves sites, scheduled for a specific day" do
-    weekdays = Factory(:site, :days => Site::Monday .. Site::Friday)
-    weekends = Factory(:site, :days => [Site::Saturday, Site::Sunday])
+    weekdays = create(:site, :days => Site::Monday .. Site::Friday)
+    weekends = create(:site, :days => [Site::Saturday, Site::Sunday])
 
     sunday = Date.parse('2011-05-01')
     Site.for_time(sunday).should include weekends
@@ -56,7 +56,7 @@ describe Site do
   end
 
   it "allows adding days one by one by appending to #days" do
-    site = Factory(:site, :days => nil)
+    site = create(:site, :days => nil)
 
     site.days.should be_empty
     site.days << Site::Monday
@@ -64,7 +64,7 @@ describe Site do
   end
 
   it "allows adding days one by one with a boolean flag" do
-    site = Factory(:site, :days => nil)
+    site = create(:site, :days => nil)
     site.days.should be_empty
 
     site.monday = 1
@@ -85,7 +85,7 @@ describe Site do
   end
 
   it "allows mass-assigning days" do
-    attrs = Factory(:site, :days => nil).attributes
+    attrs = create(:site, :days => nil).attributes
     site = Site.new(attrs.merge(:monday => '1', :tuesday => '1', :friday => '1'))
 
     site.should be_valid
@@ -93,7 +93,7 @@ describe Site do
   end
 
   it "allows checking whether it's active for a specific day" do
-    site = Factory(:site, :days => [Site::Monday, Site::Thursday, Site::Friday])
+    site = create(:site, :days => [Site::Monday, Site::Thursday, Site::Friday])
 
     site.monday.should be_true
     site.tuesday.should be_false

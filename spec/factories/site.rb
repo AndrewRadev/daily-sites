@@ -1,6 +1,8 @@
-Factory.define(:site) do |s|
-  s.title 'title'
-  s.url 'http://example.com'
+FactoryGirl.define do
+  factory :site do
+    title 'title'
+    url 'http://example.com'
 
-  s.association(:user)
+    user
+  end
 end

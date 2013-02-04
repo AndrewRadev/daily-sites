@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ProfilesController do
   before :each do
-    log_in_as Factory(:user)
+    log_in_as create(:user)
   end
 
   describe "show" do
