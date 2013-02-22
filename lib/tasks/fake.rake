@@ -1,5 +1,7 @@
 desc "Populate the database with fake data"
 task :fake => :environment do
+  require 'faker'
+
   User.destroy_all
   Registration.destroy_all
 

@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
-gem 'sqlite3'
 gem 'pg'
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -10,22 +9,13 @@ gem 'css3buttons'
 gem 'thin'
 
 group :development do
-  gem 'faker'
+  gem 'sqlite3'
+  gem 'faker', :require => false
   gem 'nifty-generators'
-  gem 'heroku'
 end
 
 group :development, :test do
   gem 'rspec-rails'
-
-  gem 'guard-rspec'
-
-  # if RUBY_PLATFORM =~ /darwin/i
-  #   gem 'rb-fsevent', :require => false
-  #   gem 'growl',      :require => false
-  # else
-  #   gem 'libnotify'
-  # end
 end
 
 group :test do
