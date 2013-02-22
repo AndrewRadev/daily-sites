@@ -7,6 +7,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'css3buttons'
+gem 'thin'
 
 group :development do
   gem 'faker'
