@@ -49,7 +49,7 @@ GEM
     httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
-    json (1.8.0)
+    json (1.8.2)
     jwt (0.1.5)
       multi_json (>= 1.0)
     mail (2.5.4)
