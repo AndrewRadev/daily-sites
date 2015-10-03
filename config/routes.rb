@@ -1,15 +1,15 @@
 DailySites::Application.routes.draw do
-  root :to => 'sites#index'
+  root to: 'sites#index'
 
-  post 'omniauth/callback'         => 'omniauth#callback', :as => :omniauth
-  match '/auth/:provider/callback' => 'omniauth#callback'
+  post 'omniauth/callback'       => 'omniauth#callback', as: :omniauth
+  get '/auth/:provider/callback' => 'omniauth#callback'
 
-  match '/signout'                 => 'sessions#destroy', :as => :sign_out
+  delete '/signout' => 'sessions#destroy', as: :sign_out
 
-  get '/pages/about' => 'pages#about', :as => 'about_page'
-  get '/pages/login' => 'pages#login', :as => 'login_page'
+  get '/pages/about' => 'pages#about', as: 'about_page'
+  get '/pages/login' => 'pages#login', as: 'login_page'
 
-  resources :sites, :except => [:show] do
+  resources :sites do
     collection do
       get :all
     end
@@ -17,8 +17,8 @@ DailySites::Application.routes.draw do
 
   get '/sites/daily/:day' => 'sites#daily'
 
-  resource :session, :only => [:destroy]
-  resource :profile, :only => [:show, :edit, :update, :destroy]
+  resource :session
+  resource :profile
 
   if Rails.env.development?
     get '/backdoor(/:id)' => 'sessions#backdoor'

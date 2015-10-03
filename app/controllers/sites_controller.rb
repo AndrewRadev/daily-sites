@@ -29,7 +29,7 @@ class SitesController < ApplicationController
   end
 
   def create
-    @site      = Site.new(params[:site])
+    @site      = Site.new(site_params)
     @site.user = current_user
 
     if @site.save
@@ -42,7 +42,7 @@ class SitesController < ApplicationController
   def update
     @site = Site.find(params[:id])
 
-    if @site.update_attributes(params[:site])
+    if @site.update_attributes(site_params)
       redirect_to root_path, :notice => 'Site was successfully updated.'
     else
       render :action => :edit
@@ -58,8 +58,11 @@ class SitesController < ApplicationController
 
   private
 
-  def current_time
-    DateTime.now.in_time_zone(current_user.time_zone)
+  def site_params
+    params.require(:site).permit(
+      :url, :title,
+      :monday, :tuesday, :wednesday, :thursday, :friday,
+      :saturday, :sunday
+    )
   end
-  helper_method :current_time
 end

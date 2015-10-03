@@ -1,3 +1,6 @@
+//= require jquery
+//= require jquery_ujs
+
 $.fn.log = function() {
   console.log(this);
   return this;

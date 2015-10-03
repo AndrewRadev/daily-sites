@@ -8,15 +8,24 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    if current_user.update_attributes(params[:user])
-      redirect_to profile_path, :notice => 'Your profile was updated.'
+    if current_user.update_attributes(profile_params)
+      redirect_to profile_path, notice: 'Your profile was updated.'
     else
-      render :action => :edit
+      render action: :edit
     end
   end
 
   def destroy
     current_user.destroy
-    redirect_to about_page_path, :notice => 'Your account here has been deleted.'
+    redirect_to about_page_path, notice: 'Your account here has been deleted.'
+  end
+
+  private
+
+  def profile_params
+    params.require(:user).permit(
+      :name,
+      :time_zone
+    )
   end
 end

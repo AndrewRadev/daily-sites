@@ -8,5 +8,4 @@ _project.vim
 tags
 gems.tags
 
-# For environment variables
-script/server
+.env

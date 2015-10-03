@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Site do
   let(:site) { create(:site) }
@@ -60,7 +60,7 @@ describe Site do
 
     site.days.should be_empty
     site.days << Site::Monday
-    site.should have(1).days
+    site.days.length.should eq 1
   end
 
   it "allows adding days one by one with a boolean flag" do
@@ -68,19 +68,19 @@ describe Site do
     site.days.should be_empty
 
     site.monday = 1
-    site.should have(1).days
+    site.days.length.should eq 1
     site.days.should include Site::Monday
 
     site.tuesday = 1
-    site.should have(2).days
+    site.days.length.should eq 2
     site.days.should include Site::Tuesday
 
     site.friday = 1
-    site.should have(3).days
+    site.days.length.should eq 3
     site.days.should include Site::Friday
 
     site.monday = 0
-    site.should have(2).days
+    site.days.length.should eq 2
     site.days.should_not include Site::Monday
   end
 
@@ -95,10 +95,10 @@ describe Site do
   it "allows checking whether it's active for a specific day" do
     site = create(:site, :days => [Site::Monday, Site::Thursday, Site::Friday])
 
-    site.monday.should be_true
-    site.tuesday.should be_false
-    site.wednesday.should be_false
-    site.thursday.should be_true
-    site.friday.should be_true
+    site.monday.should be_truthy
+    site.tuesday.should be_falsey
+    site.wednesday.should be_falsey
+    site.thursday.should be_truthy
+    site.friday.should be_truthy
   end
 end

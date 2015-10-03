@@ -1,25 +1,20 @@
-require 'rubygems'
-require 'spork'
-
-Spork.prefork do
-  ENV["RAILS_ENV"] ||= 'test'
-  require File.expand_path('../../config/environment', __FILE__)
-  require 'rspec/rails'
-
-  ActiveSupport::Dependencies.clear
-  include FactoryGirl::Syntax::Methods
-end
-
-Spork.each_run do
-  Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-  Dir[Rails.root.join("spec/factories/**/*.rb")].each { |f| require f }
-
-  DailySites::Application.reload_routes!
-
-  RSpec.configure do |config|
-    config.use_transactional_fixtures = true
-    config.mock_with :rspec
-
-    config.include Authentication, :type => :controller
+RSpec.configure do |config|
+  config.expect_with :rspec do |expectations|
+    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+    expectations.syntax = :should
   end
+
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
+    mocks.syntax = :should
+  end
+
+  config.example_status_persistence_file_path = "tmp/spec_examples.txt"
+
+  if config.files_to_run.one?
+    config.default_formatter = 'doc'
+  end
+
+  config.order = :random
+  Kernel.srand config.seed
 end

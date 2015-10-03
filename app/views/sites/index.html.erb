@@ -23,7 +23,7 @@
       <td align="center">
         <%= button_group do %>
           <%= edit_button_link_to 'Edit', edit_site_path(site) %>
-          <%= negative_remove_button_link_to 'Remove', site, {
+          <%= negative_remove_button_link_to 'Remove', site, data: {
             :confirm => 'Are you sure?',
             :method  => :delete
           } %>
@@ -41,4 +41,4 @@
   <%= big_button_link_to 'All sites',       all_sites_path %>
 <% end %>
 
-Or, show sites for day: <%= select_tag 'day', options_for_select(Site.day_names_for_select), :class => 'day-select' %>
+Or, show sites for day: <%= select_tag 'day', options_for_select(Site.day_names_for_select), class: 'day-select' %>

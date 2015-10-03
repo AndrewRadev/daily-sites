@@ -1,8 +1,8 @@
 class Site < ActiveRecord::Base
   belongs_to :user
 
-  validates :title, :url, :user, :presence => true
-  validates :url, :format => URI.regexp(['http', 'https', 'file'])
+  validates :title, :url, :user, presence: true
+  validates :url, format: URI.regexp(['http', 'https', 'file'])
 
   Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday = (1 .. 7).to_a
 

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
   before :each do
@@ -36,10 +36,10 @@ describe User do
   it "can create additional registrations from omniauth data" do
     user = create(:user)
 
-    expect {
+    -> {
       user.create_registration_from_omniauth(auth.merge(:uid => '234'))
       user.reload
-    }.to change(user.registrations, :count).by +1
+    }.should change(user.registrations, :count).by +1
   end
 
   describe "(remember me)" do

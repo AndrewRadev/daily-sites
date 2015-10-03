@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user, :logged_in?
-
   private
 
   def require_user
@@ -12,10 +10,12 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= find_current_user
   end
+  helper_method :current_user
 
   def logged_in?
     current_user.present?
   end
+  helper_method :logged_in?
 
   def find_current_user
     if session[:user_id]
@@ -29,4 +29,9 @@ class ApplicationController < ActionController::Base
     session[:user_id] = nil
     cookies.delete('remember_user_token')
   end
+
+  def current_time
+    DateTime.now.in_time_zone(current_user.time_zone)
+  end
+  helper_method :current_time
 end

@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :sites,         :dependent => :destroy
-  has_many :registrations, :dependent => :destroy
+  has_many :sites,         dependent: :destroy
+  has_many :registrations, dependent: :destroy
 
-  validates :name, :presence => true
+  validates :name, presence: true
 
   class << self
     def serialize_from_cookie(cookie)
