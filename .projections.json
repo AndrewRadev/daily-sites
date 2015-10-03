@@ -1,0 +1,5 @@
+{
+  "spec/factories/*.rb": {
+    "command": "factory"
+  }
+}
