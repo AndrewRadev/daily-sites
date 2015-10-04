@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Daily Sites</title>
 
-    <%= css3buttons_stylesheets include_reset: false %>
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag :application %>
     <%= csrf_meta_tag %>
@@ -12,23 +15,34 @@
   </head>
 
   <body>
-    <div id="container">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
+    <div class="container">
+      <div class="row ">
+        <h1 class="col-xs-8"><%= link_to 'Daily Sites', '/' %></h1>
+        <div class="col-xs-4 login-info">
+          <% if logged_in? %>
+            Signed in as <%= current_user.name %>.
 
-      <div class="right">
-        <% if logged_in? %>
-          Signed in as <%= current_user.name %>.
-
-          <%= button_group do %>
-            <%= button_link_to 'View profile', profile_path %>
-            <%= button_link_to 'Sign out', sign_out_path %>
+            <%= link_to 'View profile', profile_path,  class: 'btn btn-default' %>
+            <%= link_to 'Sign out',     sign_out_path, class: 'btn btn-default' %>
           <% end %>
-        <% end %>
+        </div>
       </div>
 
-      <%= content_tag :h1, yield(:title) if show_title? %>
+      <% if flash.key?(:error) %>
+        <div class="alert alert-dismissible alert-danger" role="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+
+      <% if flash.key?(:notice) %>
+        <div class="alert alert-dismissible alert-success" role="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <hr>
 
       <%= yield %>
     </div>

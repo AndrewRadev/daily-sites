@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 
 $.fn.log = function() {
   console.log(this);
@@ -19,8 +20,9 @@ $(document).ready(function() {
     return false;
   });
 
-  $('.day-select').change(function() {
-    var day = $(this).val();
+  $('.day-select a').click(function(e) {
+    e.preventDefault();
+    var day = $(this).data('id');
     document.location.href = dailyPath(day);
   });
 });

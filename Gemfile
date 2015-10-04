@@ -6,16 +6,15 @@ gem 'pg'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-gem 'css3buttons'
 gem 'thin'
 gem 'sass-rails'
+gem 'bootstrap-sass'
 gem 'uglifier'
 gem 'jquery-rails'
 
 group :development do
   gem 'sqlite3'
   gem 'faker', require: false
-  gem 'nifty-generators'
   gem 'spring'
   gem 'spring-commands-rspec'
 end
