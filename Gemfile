@@ -26,7 +26,6 @@ end
 
 group :test do
   gem 'factory_girl'
-  gem 'shoulda'
   gem 'timecop'
   gem 'spork'
 end
