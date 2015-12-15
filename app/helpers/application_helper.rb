@@ -16,7 +16,7 @@ module ApplicationHelper
       alt:   '',
       title: site.title,
       size:  '16x16',
-      class: 'favicon'
+      class: 'favicon js-favicon'
     }
   end
 end

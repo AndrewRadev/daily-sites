@@ -2,7 +2,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 
-$.fn.log = function() {
+$.fn.dump = function() {
   console.log(this);
   return this;
 };
@@ -24,5 +24,10 @@ $(document).ready(function() {
     e.preventDefault();
     var day = $(this).data('id');
     document.location.href = dailyPath(day);
+  });
+
+  $('.js-favicon').on('error', function() {
+    $defaultFavicon = $('.js-default-favicon');
+    $(this).attr('src', $defaultFavicon.attr('src'));
   });
 });

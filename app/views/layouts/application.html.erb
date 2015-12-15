@@ -7,7 +7,7 @@
 
     <title>Daily Sites</title>
 
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag :application %>
     <%= javascript_include_tag :application %>
     <%= csrf_meta_tag %>
 
@@ -15,6 +15,8 @@
   </head>
 
   <body>
+    <%= image_tag 'default_favicon.png', class: 'js-default-favicon', style: 'display: none;' %>
+
     <div class="container">
       <div class="row ">
         <h1 class="col-xs-4"><%= link_to 'Daily Sites', '/' %></h1>
