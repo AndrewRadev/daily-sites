@@ -1,11 +1,28 @@
 <h2>
   <%= @title %>
-  <%= link_to 'Open links', '#', id: 'open-links', class: 'btn btn-primary' %>
+  <%= link_to 'Open all links', '#', id: 'open-links', class: 'btn btn-primary' %>
 </h2>
 
-<p>
-  Now is <strong><%= current_time.to_s(:long) %></strong>
-</p>
+<div class="actions">
+  <%= link_to 'New site',        new_site_path,  class: 'btn btn-default' %>
+  <%= link_to 'Sites for today', sites_path,     class: 'btn btn-default' %>
+  <%= link_to 'All sites',       all_sites_path, class: 'btn btn-default' %>
+
+  Or, show sites for
+
+  <div class="dropdown day-select">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+      a particular day
+      <span class="caret"></span>
+    </button>
+
+    <ul class="dropdown-menu">
+      <% Site.day_names_for_select.each do |name, id| %>
+        <li><a href="#" data-id="<%= id %>"><%= name.titleize %></a></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
 <table class="table table-hover">
   <tr>
@@ -31,24 +48,3 @@
     </tr>
   <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New site',        new_site_path,  class: 'btn btn-default' %>
-<%= link_to 'Sites for today', sites_path,     class: 'btn btn-default' %>
-<%= link_to 'All sites',       all_sites_path, class: 'btn btn-default' %>
-
-Or, show sites for
-
-<div class="dropdown day-select">
-  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-    a particular day
-    <span class="caret"></span>
-  </button>
-
-  <ul class="dropdown-menu">
-    <% Site.day_names_for_select.each do |name, id| %>
-      <li><a href="#" data-id="<%= id %>"><%= name.titleize %></a></li>
-    <% end %>
-  </ul>
-</div>

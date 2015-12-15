@@ -3,7 +3,7 @@ class SitesController < ApplicationController
 
   def index
     @sites = current_user.sites.for_time(current_time)
-    @title = "Sites for today"
+    @title = "Sites for today, #{current_time.to_date.to_s(:long)}"
   end
 
   def all
