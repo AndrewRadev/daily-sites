@@ -55,6 +55,14 @@ class Site < ActiveRecord::Base
     end
   end
 
+  def url_root
+    "#{uri.scheme}://#{uri.host}"
+  end
+
+  def uri
+    @uri ||= URI.parse(url)
+  end
+
   class << self
     def day_names_for_select
       DayNames.invert

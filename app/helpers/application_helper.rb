@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def favicon(site)
-    image_tag "http://g.etfv.co/#{site.url}", {
+    image_tag "#{site.url_root}/favicon.ico", {
       :title => site.title,
       :size  => '16x16',
       :class => 'favicon'
