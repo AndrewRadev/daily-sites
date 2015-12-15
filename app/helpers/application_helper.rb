@@ -13,9 +13,10 @@ module ApplicationHelper
 
   def favicon(site)
     image_tag "#{site.url_root}/favicon.ico", {
-      :title => site.title,
-      :size  => '16x16',
-      :class => 'favicon'
+      alt:   '',
+      title: site.title,
+      size:  '16x16',
+      class: 'favicon'
     }
   end
 end
