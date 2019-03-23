@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :registration do
     sequence(:uid) { |n| "#{n}" }
-    provider 'twitter'
+    provider { 'twitter' }
 
     user
   end

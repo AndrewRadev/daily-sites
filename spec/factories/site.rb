@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :site do
-    title 'title'
-    url 'http://example.com'
+    title { 'title' }
+    url { 'http://example.com' }
 
     user
   end

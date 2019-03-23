@@ -1,4 +1,4 @@
-class AddRememberTokenToUser < ActiveRecord::Migration
+class AddRememberTokenToUser < ActiveRecord::Migration[4.2]
   def self.up
     add_column :users, :remember_token, :string
     add_column :users, :remember_token_expires_at, :datetime

@@ -1,4 +1,4 @@
-DailySites::Application.routes.draw do
+Rails.application.routes.draw do
   root to: 'sites#index'
 
   post 'omniauth/callback'       => 'omniauth#callback', as: :omniauth

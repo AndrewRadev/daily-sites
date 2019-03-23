@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_many :sites,         dependent: :destroy
   has_many :registrations, dependent: :destroy
 
@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
       id, remember_value = cookie
 
       User.
-        where(:id => id, :remember_token => remember_value).
+        where(id: id, remember_token: remember_value).
         where('remember_token_expires_at > ?', Time.current).
         first
     end
@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
     def find_from_omniauth(auth)
       auth = auth.deep_symbolize_keys
 
-      registration = Registration.find_by_uid_and_provider(auth[:uid], auth[:provider])
-      registration.try(:user)
+      registration = Registration.find_by(uid: auth[:uid], provider: auth[:provider])
+      registration.try!(:user)
     end
   end
 
@@ -77,9 +77,9 @@ class User < ActiveRecord::Base
     token      = SecureRandom.hex(32)
     expires_at = 2.weeks.from_now
 
-    update_attributes!({
-      :remember_token            => token,
-      :remember_token_expires_at => expires_at,
+    update!({
+      remember_token:            token,
+      remember_token_expires_at: expires_at,
     })
 
     [token, expires_at]

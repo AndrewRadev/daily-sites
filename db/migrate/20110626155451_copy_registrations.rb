@@ -1,4 +1,7 @@
-class CopyRegistrations < ActiveRecord::Migration
+class CopyRegistrations < ActiveRecord::Migration[4.2]
+  class User < ActiveRecord::Base
+  end
+
   def self.up
     User.all.each do |u|
       u.registrations.create! do |r|

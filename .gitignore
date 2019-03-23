@@ -1,11 +1,22 @@
-.bundle
-db/*.sqlite3
-log/*.log
-tmp/
-config/database.yml
+# Ignore bundler config.
+/.bundle
 
-_project.vim
-tags
-gems.tags
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
 
-.env
+/public/assets
+.byebug_history
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+/config/database.yml
+
+/_project.vim
+/tags
+/gems.tags
+
+/.env

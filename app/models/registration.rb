@@ -1,4 +1,4 @@
-class Registration < ActiveRecord::Base
+class Registration < ApplicationRecord
   belongs_to :user
 
   validates :uid,      presence: true
@@ -11,7 +11,7 @@ class Registration < ActiveRecord::Base
     def already_created?(auth)
       auth = auth.deep_symbolize_keys
 
-      find_by_uid_and_provider(auth[:uid], auth[:provider]).present?
+      exists?(uid: auth[:uid], provider: auth[:provider])
     end
   end
 end

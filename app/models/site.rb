@@ -1,4 +1,4 @@
-class Site < ActiveRecord::Base
+class Site < ApplicationRecord
   belongs_to :user
 
   validates :title, :url, :user, presence: true
@@ -75,7 +75,12 @@ class Site < ActiveRecord::Base
     end
 
     def for_time(time)
-      for_day(time.cwday)
+      # wday starts on Sunday
+      if time.wday == 0
+        for_day(7)
+      else
+        for_day(time.wday)
+      end
     end
   end
 end

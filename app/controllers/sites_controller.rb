@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  before_filter :require_user
+  before_action :require_user
 
   def index
     @sites = current_user.sites.for_time(current_time)

@@ -1,9 +1,9 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
-    name 'joe'
+    name { 'joe' }
 
     after(:build) do |user, evaluator|
-      user.registrations << FactoryGirl.create(:registration, :user => user)
+      user.registrations << FactoryBot.create(:registration, :user => user)
     end
   end
 end
