@@ -125,7 +125,7 @@ GEM
       omniauth-oauth (~> 1.1)
       rack
     pg (1.1.4)
-    puma (3.12.1)
+    puma (3.12.2)
     rack (2.0.6)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -229,7 +229,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection (~> 0.1.2)
   omniauth-twitter
   pg (>= 0.18, < 2.0)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.2, >= 5.2.2.1)
   rspec-rails
   sass-rails (~> 5.0)
