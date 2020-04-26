@@ -14,7 +14,6 @@ gem 'jquery-rails'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
-gem 'omniauth-facebook'
 
 # Fix potential CSRF issue (https://github.com/omniauth/omniauth/pull/809)
 gem 'omniauth-rails_csrf_protection', '~> 0.1.2'
