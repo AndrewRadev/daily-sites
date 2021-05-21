@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root to: 'sites#index'
 
-  post 'omniauth/callback'        => 'omniauth#callback', as: :omniauth
-  post '/auth/:provider/callback' => 'omniauth#callback'
+  post 'omniauth/callback'       => 'omniauth#callback', as: :omniauth
+  get '/auth/:provider/callback' => 'omniauth#callback'
 
   delete '/signout' => 'sessions#destroy', as: :sign_out
 
